@@ -36,10 +36,22 @@ class Player():
         elif y < self.Y - 2 * self.SPACE:
             line = 2
 
-        # ignore click
+        self.print_click(line, column)
+
+        # check
+        if check(self.arrive) != None:
+            self.xo.penup()
+            self.xo.goto(-180, -50)
+            time.sleep(0.5)
+            self.xo.clear()
+            self.xo.write("wins " + check(self.arrive), font=('Arial', 100))
+
+
+    def print_click(self, line, column):
+        # ignore double click
         if self.arrive[line][column] != None: return
 
-        # print
+
         centre_touch_line = (-line * self.SPACE - self.SPACE / 2) + self.size / 2
         centre_touch_column = (column * self.SPACE + self.SPACE / 2) - self.size / 2
 
@@ -56,14 +68,6 @@ class Player():
             self.turn = 'x'
         else:
             self.turn = 'o'
-
-        # check
-        if check(self.arrive) != None:
-            self.xo.penup()
-            self.xo.goto(-180, -50)
-            time.sleep(0.5)
-            self.xo.clear()
-            self.xo.write("wins " + check(self.arrive), font=('Arial', 100))
 
 
     def draw(self):

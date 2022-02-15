@@ -18,13 +18,17 @@ class Game():
 
         self.player = Player(self.size, turn)
 
+        self.move()
 
+
+    def move(self):
         self.window.onclick(self.player.click)
 
         self.draw()
 
         self.window.listen()  # listen to events
         self.window.mainloop()
+
 
     def draw(self):
         self.player.draw()
